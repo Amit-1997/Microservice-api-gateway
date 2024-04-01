@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: user-service
+            uri: lb://user-service
+            predicates:
+              - path=/user/**
+          - id: contact-service
+            uri: lb://contact-service
+            predicates:
+              - path=/contact/**
+
+  application:
+    name: apigateway-service
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    hostname: localhost
+
+
+
+server:
+  port: 3999
+
